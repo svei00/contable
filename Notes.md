@@ -6,4 +6,6 @@
 
    - cd my-app
 
-3.
+3. Install Prisma, prisma is for data access with ORM(Objet-relational Mapper)
+   - yarn add prisma @prisma/client dotenv or
+   - npm i prisma @prisma/lient dontenv
