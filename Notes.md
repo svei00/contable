@@ -9,4 +9,22 @@
    - DATABASE_URL=postgres://username:password@localhost:5432/mydatabase
      The file should contain the connetion URL for your PostgreeSQL Database
 5. Initialize prisma:
+
    - npx prisma init
+   - Open your Prisma Schema (schema.prisma) to define your database schema:
+     datasource db {
+     provider = "postgresql"
+     url = env("DATABASE_URL")
+     }
+
+   model User {
+   id Int @id @default(autoincrement())
+   name String
+   email String @unique
+   createAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+   }
+
+6. Generate Prisma Client code:
+   - npx prisma generate
+     This will generate the module "@prisma/client" in "node_modules"
