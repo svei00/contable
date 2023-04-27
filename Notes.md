@@ -28,3 +28,28 @@
 6. Generate Prisma Client code:
    - npx prisma generate
      This will generate the module "@prisma/client" in "node_modules"
+7. Create a new file called 'pages/api/users.js' with the code:
+   import prisma from '../../lib/prisma';
+
+export default async function handler(req, res) {
+if (req.method === 'POST') {
+const { name, email } = req.body;
+
+    const user = await prisma.user.create({
+      data: {
+        name,
+        email,
+      },
+    });
+
+    res.json(user);
+
+} else if (req.method === 'GET') {
+const users = await prisma.user.findMany();
+
+    res.json(users);
+
+} else {
+res.status(405).json({ message: 'Method not allowed' });
+}
+}
